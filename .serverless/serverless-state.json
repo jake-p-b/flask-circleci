@@ -186,7 +186,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/jake-test-app/dev/1609614774256-2021-01-02T19:12:54.256Z/app.zip"
+                "S3Key": "serverless/jake-test-app/dev/1609618048811-2021-01-02T20:07:28.811Z/app.zip"
               },
               "FunctionName": "jake-test-app-dev-app",
               "Handler": "wsgi_handler.handler",
@@ -209,14 +209,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionQMOiabbUhZffa7PVf7RAMx6tzYhPM3rpG0N1dGCXF4": {
+          "AppLambdaVersionq0fcQLpYQp6YhAKgfuGcVjGZqfLKIOwil2SvZgiNyd8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "87U7PAeAnDz4sbQPGs02uuog/BsPamYNjEqqCQclnU0="
+              "CodeSha256": "MPLrmKz/RmnRprWCV9shdYSGQCO8upmxC4vA5J2xzLU="
             }
           },
           "ApiGatewayRestApi": {
@@ -335,7 +335,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1609614688226": {
+          "ApiGatewayDeployment1609618025713": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -417,7 +417,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionQMOiabbUhZffa7PVf7RAMx6tzYhPM3rpG0N1dGCXF4"
+              "Ref": "AppLambdaVersionq0fcQLpYQp6YhAKgfuGcVjGZqfLKIOwil2SvZgiNyd8"
             }
           },
           "ServiceEndpoint": {
@@ -558,7 +558,7 @@
         "timeout": 6,
         "runtime": "python3.7",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionQMOiabbUhZffa7PVf7RAMx6tzYhPM3rpG0N1dGCXF4"
+        "versionLogicalId": "AppLambdaVersionq0fcQLpYQp6YhAKgfuGcVjGZqfLKIOwil2SvZgiNyd8"
       }
     },
     "resources": {
@@ -612,7 +612,7 @@
           "serverless_wsgi.py",
           ".serverless-wsgi"
         ],
-        "artifactDirectoryName": "serverless/jake-test-app/dev/1609614774256-2021-01-02T19:12:54.256Z"
+        "artifactDirectoryName": "serverless/jake-test-app/dev/1609618048811-2021-01-02T20:07:28.811Z"
       },
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
@@ -628,7 +628,7 @@
   },
   "package": {
     "individually": true,
-    "artifactDirectoryName": "serverless/jake-test-app/dev/1609614774256-2021-01-02T19:12:54.256Z",
+    "artifactDirectoryName": "serverless/jake-test-app/dev/1609618048811-2021-01-02T20:07:28.811Z",
     "artifact": ""
   }
 }
