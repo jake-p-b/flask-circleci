@@ -10,7 +10,7 @@ custom:
     app: jake-test-app.app
     packRequirements: false
   pythonRequirements:
-    pythonBin: /usr/local/bin/python
+    dockerizePip: non-linux
   dynamodb:
     stages:
       - dev

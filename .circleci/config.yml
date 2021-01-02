@@ -1,7 +1,8 @@
 jobs:
   deploy:
     parallelism: 1
-    executor: serverless/default
+    docker:
+      - image: circleci/python:3.7.2
     steps:
       - checkout
       - aws-cli/setup
