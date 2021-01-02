@@ -10,7 +10,7 @@ custom:
     app: jake-test-app.app
     packRequirements: false
   pythonRequirements:
-    pythonBin: python3
+    pythonBin: /usr/local/bin/python
   dynamodb:
     stages:
       - dev
