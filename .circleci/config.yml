@@ -1,3 +1,6 @@
+# Remember to make them execute sequentially
+# and rewrite testing suite for proper url when it runs
+
 jobs:
   deploy:
     parallelism: 1
