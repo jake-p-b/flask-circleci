@@ -1,5 +1,6 @@
 # Remember to make them execute sequentially
 # and rewrite testing suite for proper url when it runs
+# added something to commit
 
 jobs:
   deploy:
