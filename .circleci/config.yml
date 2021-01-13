@@ -4,7 +4,6 @@
 
 jobs:
   deploy:
-    parallelism: 1
     docker:
       - image: circleci/python:3.7.2
     steps:
@@ -15,13 +14,13 @@ jobs:
           command: |
             sls deploy
   newman-collection-run:
-    parallelism: 1
     executor: newman/postman-newman-docker
     steps:
       - checkout
       - newman/newman-run:
           collection: ./Simple-Tests.json
           environment: ./simple-env.postman_environment.json
+          additional-options: '--verbose'
 orbs:
   newman: postman/newman@0.0.2
   serverless: circleci/serverless-framework@1.0.1
