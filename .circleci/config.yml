@@ -19,8 +19,7 @@ jobs:
       - checkout
       - newman/newman-run:
           collection: ./Simple-Tests.json
-          environment: ./simple-env.postman_environment.json
-          additional-options: '--verbose'
+          environment: 'https://j152xgs3l4.execute-api.us-east-2.amazonaws.com/dev'
 orbs:
   newman: postman/newman@0.0.2
   serverless: circleci/serverless-framework@1.0.1
