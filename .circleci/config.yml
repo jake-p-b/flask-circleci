@@ -17,12 +17,6 @@ jobs:
     executor: newman/postman-newman-docker
     steps:
       - checkout
-      - run:
-          command:
-          sls info > output.txt
-          (awk '/ANY - / {print $3}' output.txt' | head -1) > url.txt
-
-
       - newman/newman-run:
           collection: './Simple-Tests.json'
           environment: './simple-env.postman_environment.json'
