@@ -165,7 +165,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/jake-test-app/dev/1609871334254-2021-01-05T18:28:54.254Z/app.zip"
+          "S3Key": "serverless/jake-test-app/dev/1610471486593-2021-01-12T17:11:26.593Z/app.zip"
         },
         "FunctionName": "jake-test-app-dev-app",
         "Handler": "wsgi_handler.handler",
@@ -188,14 +188,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionbX6HPyCAVikg4Ub91TIXz9VKHuLgGYD7NQ1at5kM": {
+    "AppLambdaVersionYuqVPwCGZWT1eWlAOLyqWq9mQf1VadThSlI31lFUchQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "w/Iw0CwLwzJXEWR5ci+cHfX/qvtnjZSkwuQOpUoT55E="
+        "CodeSha256": "0rWGJQPP+MHEwa8XPPTCSySBRNoj7+Jx5lnJXhuw+Ng="
       }
     },
     "ApiGatewayRestApi": {
@@ -314,7 +314,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1609871313532": {
+    "ApiGatewayDeployment1610471462621": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -396,7 +396,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionbX6HPyCAVikg4Ub91TIXz9VKHuLgGYD7NQ1at5kM"
+        "Ref": "AppLambdaVersionYuqVPwCGZWT1eWlAOLyqWq9mQf1VadThSlI31lFUchQ"
       }
     },
     "ServiceEndpoint": {

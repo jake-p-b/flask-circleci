@@ -20,7 +20,8 @@ jobs:
     steps:
       - checkout
       - newman/newman-run:
-          collection: ./SimpleTests.json
+          collection: ./Simple-Tests.json
+          environment: ./simple-env.postman_environment.json
 orbs:
   newman: postman/newman@0.0.2
   serverless: circleci/serverless-framework@1.0.1
