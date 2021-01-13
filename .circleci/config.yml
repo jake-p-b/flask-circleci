@@ -32,4 +32,6 @@ workflows:
   workflow:
     jobs:
       - deploy
-      - newman-collection-run
+      - newman-collection-run:
+          requires:
+            - deploy
