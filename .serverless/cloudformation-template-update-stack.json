@@ -158,6 +158,52 @@
         }
       }
     },
+    "EnterpriseLogAccessIamRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "arn:aws:iam::802587217904:root"
+              },
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "StringEquals": {
+                  "sts:ExternalId": "ServerlessEnterprise-3f1d1073-706b-4e4a-8266-774b2d77a5b2"
+                }
+              }
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "LogFilterAccess",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:FilterLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::GetAtt": [
+                        "AppLogGroup",
+                        "Arn"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "AppLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -165,10 +211,10 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/jake-test-app/dev/1610822262320-2021-01-16T18:37:42.320Z/app.zip"
+          "S3Key": "serverless/jake-test-app/dev/1610823424975-2021-01-16T18:57:04.975Z/app.zip"
         },
         "FunctionName": "jake-test-app-dev-app",
-        "Handler": "wsgi_handler.handler",
+        "Handler": "s_app.handler",
         "MemorySize": 1024,
         "Role": {
           "Fn::GetAtt": [
@@ -188,14 +234,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersion7MzPeErbMoDgpD7AfZYnbQAKwgq50tnCzzE9kTWkGM": {
+    "AppLambdaVersionvrL7L3ik3sd8vWKmkJ6hNQqQ8aVvsCg7k15qxy6Crg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "5IWhKGmeQtSUezYna2YKlWY68BM3aeVsptG4Yni+n1Y="
+        "CodeSha256": "m+LfIgKje5KIEJ4kKlqCKUq0Hyb33ADWKjJ3x2yNiRU="
       }
     },
     "ApiGatewayRestApi": {
@@ -314,7 +360,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1610822238655": {
+    "ApiGatewayDeployment1610823394797": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -364,6 +410,133 @@
         }
       }
     },
+    "ApiGatewayLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/api-gateway/jake-test-app-dev"
+      }
+    },
+    "CustomApiGatewayAccountCloudWatchRole": {
+      "Type": "Custom::ApiGatewayAccountRole",
+      "Version": 1,
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomDashresourceDashapigwDashcwDashroleLambdaFunction",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "IamRoleCustomResourcesLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": {
+              "Fn::Join": [
+                "-",
+                [
+                  "dev",
+                  "jake-test-app",
+                  "custom-resources-lambda"
+                ]
+              ]
+            },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "iam:",
+                        {
+                          "Ref": "AWS::AccountId"
+                        },
+                        "role/*"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "iam:AttachRolePolicy",
+                    "iam:CreateRole",
+                    "iam:ListAttachedRolePolicies",
+                    "iam:PassRole"
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Join": [
+                      ":",
+                      [
+                        "arn",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        "apigateway:*::/account"
+                      ]
+                    ]
+                  },
+                  "Action": [
+                    "apigateway:GET",
+                    "apigateway:PATCH"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CustomDashresourceDashapigwDashcwDashroleLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/jake-test-app/dev/1610823424975-2021-01-16T18:57:04.975Z/custom-resources.zip"
+        },
+        "FunctionName": "jake-test-app-dev-custom-resource-apigw-cw-role",
+        "Handler": "apiGatewayCloudWatchRole/handler.handler",
+        "MemorySize": 1024,
+        "Runtime": "nodejs12.x",
+        "Timeout": 180,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleCustomResourcesLambdaExecution",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "IamRoleCustomResourcesLambdaExecution"
+      ]
+    },
     "UsersDynamoDBTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
@@ -385,6 +558,26 @@
         },
         "TableName": "jake-new-table-dev"
       }
+    },
+    "CloudWatchLogsSubscriptionFilterAppLogGroup": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-east-2:802587217904:destination:3f1d1073-706b-4e4a-8266-774b2d77a5b2#VRWyWbvB0xtVyV8GJz#jake-test-app#dev",
+        "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+        "LogGroupName": {
+          "Ref": "AppLogGroup"
+        }
+      }
+    },
+    "CloudWatchLogsSubscriptionFilterApiGatewayLogGroup": {
+      "Type": "AWS::Logs::SubscriptionFilter",
+      "Properties": {
+        "DestinationArn": "arn:aws:logs:us-east-2:802587217904:destination:3f1d1073-706b-4e4a-8266-774b2d77a5b2#VRWyWbvB0xtVyV8GJz#jake-test-app#dev",
+        "FilterPattern": "\"SLS_ACCESS_LOG\"",
+        "LogGroupName": {
+          "Ref": "ApiGatewayLogGroup"
+        }
+      }
     }
   },
   "Outputs": {
@@ -393,10 +586,18 @@
         "Ref": "ServerlessDeploymentBucket"
       }
     },
+    "EnterpriseLogAccessIamRole": {
+      "Value": {
+        "Fn::GetAtt": [
+          "EnterpriseLogAccessIamRole",
+          "Arn"
+        ]
+      }
+    },
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersion7MzPeErbMoDgpD7AfZYnbQAKwgq50tnCzzE9kTWkGM"
+        "Ref": "AppLambdaVersionvrL7L3ik3sd8vWKmkJ6hNQqQ8aVvsCg7k15qxy6Crg"
       }
     },
     "ServiceEndpoint": {

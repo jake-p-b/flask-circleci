@@ -1,4 +1,6 @@
 service: jake-test-app
+org: boring
+app: jake-test-app
 
 plugins:
   - serverless-python-requirements
