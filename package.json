@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm install -g newman && newman run Simple-Tests.json -e simple-env.postman_environment.json",
+    "test": "npm install -g newman && newman run Simple-Tests.json -e simple-env.postman_environment.json"
   },
   "keywords": [],
   "author": "",
