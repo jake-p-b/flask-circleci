@@ -6,11 +6,7 @@ plugins:
   - serverless-python-requirements
   - serverless-wsgi
   - serverless-dynamodb-local
-  - serverless-plugin-scripts
 custom:
-  scripts:
-    hooks:
-      'deploy:finalize': newman run Simple-Tests.json -e simple-env.postman_environment.json
   tableName: 'jake-new-table-${self:provider.stage}'
   wsgi:
     app: jake-test-app.app
