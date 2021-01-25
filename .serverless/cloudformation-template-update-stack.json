@@ -211,7 +211,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/jake-test-app/dev/1610823424975-2021-01-16T18:57:04.975Z/app.zip"
+          "S3Key": "serverless/jake-test-app/dev/1611593913545-2021-01-25T16:58:33.545Z/app.zip"
         },
         "FunctionName": "jake-test-app-dev-app",
         "Handler": "s_app.handler",
@@ -234,14 +234,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionvrL7L3ik3sd8vWKmkJ6hNQqQ8aVvsCg7k15qxy6Crg": {
+    "AppLambdaVersione6GjxqXq2vZCP0wWuAwNNrbokFXnpr7HpUzsE61Zp0U": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "m+LfIgKje5KIEJ4kKlqCKUq0Hyb33ADWKjJ3x2yNiRU="
+        "CodeSha256": "3nU9ahiI5XRE1tvx4TVw6WoR8u+yJxZB/FWWbKQynY0="
       }
     },
     "ApiGatewayRestApi": {
@@ -360,7 +360,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1610823394797": {
+    "ApiGatewayDeployment1611593889220": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -519,7 +519,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/jake-test-app/dev/1610823424975-2021-01-16T18:57:04.975Z/custom-resources.zip"
+          "S3Key": "serverless/jake-test-app/dev/1611593913545-2021-01-25T16:58:33.545Z/custom-resources.zip"
         },
         "FunctionName": "jake-test-app-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -597,7 +597,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionvrL7L3ik3sd8vWKmkJ6hNQqQ8aVvsCg7k15qxy6Crg"
+        "Ref": "AppLambdaVersione6GjxqXq2vZCP0wWuAwNNrbokFXnpr7HpUzsE61Zp0U"
       }
     },
     "ServiceEndpoint": {

@@ -16,6 +16,7 @@
     "serverless-wsgi": "^1.7.6"
   },
   "dependencies": {
-    "node": "^15.4.0"
+    "node": "^15.4.0",
+    "serverless-plugin-stack-config": "^1.1.0"
   }
 }
